@@ -90,21 +90,21 @@ public:
         if (element == nullptr){
             return false;
         }
-        auto deteled_elem_next = element->Next;
-        auto deteled_elem_prev = element->Prev;
+        auto deleted_elem_next = element->Next;
+        auto deleted_elem_prev = element->Prev;
         
-        if (deteled_elem_next != nullptr){
-            deteled_elem_next->Prev = deteled_elem_prev;
+        if (deleted_elem_next != nullptr){
+            deleted_elem_next->Prev = deleted_elem_prev;
         }
         
-        if (deteled_elem_prev != nullptr){
-            deteled_elem_prev->Next = deteled_elem_next;
+        if (deleted_elem_prev != nullptr){
+            deleted_elem_prev->Next = deleted_elem_next;
         }
         if( index == 0){
-            firstElem = deteled_elem_next;
+            firstElem = deleted_elem_next;
         }
         if( index == count - 1){
-            lastElem = deteled_elem_prev;
+            lastElem = deleted_elem_prev;
         }
         count--;
         delete element;
