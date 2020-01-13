@@ -65,14 +65,22 @@ public:
     
     bool remove_first_elem()
     {
+        auto element = firstElem;
         if (firstElem == nullptr)
         {
             return false;
         }
-        else
-            firstElem = firstElem -> Next;
-        delete firstElem;
-        count--;
+        if(count != 0 && count != 1)
+        {
+            firstElem = firstElem->Next;
+            delete element;
+            count--;
+        }
+        else if(count==1)
+        {
+            delete element;
+            count--;
+        }
         
         return true;
     }
@@ -80,6 +88,7 @@ public:
     bool remove(unsigned int index){
         
         auto element = _find(index);
+        auto parent = _find(index-1);
         if(count == 0)
         {
             return false;
@@ -88,14 +97,17 @@ public:
         {
             remove_first_elem();
         }
+        if(index == count - 1)
+        {
+            auto deleted_elem_next = element->Next;
+            parent->Next = deleted_elem_next;
+            delete element;
+            count--;
+        }
         else
         {
-            for(int i=1; i < index; i++)
-            {
-                firstElem = firstElem -> Next;
-            }
-            element = firstElem -> Next;
-            firstElem -> Next = firstElem -> Next -> Next;
+            auto deleted_elem_next = element->Next;
+            parent->Next=deleted_elem_next;
             delete element;
             count--;
         }
@@ -137,8 +149,10 @@ int main()
     list.AddElem(0, 1);
     list.AddElem(1, 2);
     list.AddElem(2, 3);
+    list.AddElem(3, 4);
 
-    list.remove(1);
+    list.remove_first_elem();
+    list.remove(2);
     list.ShowList();
     
     return 0;

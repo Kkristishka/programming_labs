@@ -73,14 +73,22 @@ public:
     
     bool remove_first_elem()
     {
+        auto element = firstElem;
         if (firstElem == nullptr)
         {
             return false;
         }
-        else
-            firstElem = firstElem -> Next;
-        delete firstElem;
-        count--;
+        else if(count != 0 && count != 1)
+        {
+            firstElem = firstElem->Next;
+            delete element;
+            count--;
+        }
+        else if(count==1)
+        {
+            delete element;
+            count--;
+        }
         
         return true;
     }
@@ -150,9 +158,7 @@ int main()
     list.AddElem(1, 2222);
     list.AddElem(2, 2);
     list.AddElem(3, 3);
-    
-    
-    list.remove(2);
+    list.remove(1);
     list.ShowList();
     
     return 0;
