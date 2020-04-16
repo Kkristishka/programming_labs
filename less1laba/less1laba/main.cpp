@@ -3,28 +3,21 @@
 #include <string>
 #include <fstream>
 using namespace std;
-namespace fs = std::filesystem;
+namespace fs = std::__fs::filesystem;
 
 int main()
 {
     string log, devicename, userdevicename, path, data_time;
     for (;;)
     {
-        cout << endl << "Enter the device name: ";
+        cout << "Enter the device name: ";
         cin >> userdevicename;
-        if (cin.fail())
-        {
-            cin.clear();
-            cout << "Try again";
-        }
-        else
-        {
-            cout << endl << "Date \t \t Value" << endl;
-            for (auto& p : fs::directory_iterator("logs"))
+        cout << endl << "Date \t \t      Value" << endl;
+        for (auto& p : fs::directory_iterator("/Users/kristinaammosova/Desktop/labs/programming_labs/less1laba/less1laba/logs"))
             {
                 ifstream file(p.path().generic_string());
                 path = p.path().generic_string();
-                int q = 10;
+                int q = 84;
                 while (path[q] != ')')
                 {
                     data_time += path[q];
@@ -57,14 +50,7 @@ int main()
                     }
                     if (userdevicename == devicename && log[i + 1] == ':')
                     {
-                        if (userdevicename[0] > 48 && userdevicename[0] < 58)
-                        {
-                            break;
-                        }
-                        else
-                        {
                             data_time += ':';
-                            data_time += log[0];
                             data_time.push_back(32);
 
                             int k = i + 2;
@@ -74,13 +60,11 @@ int main()
                                 k++;
                             }
                             cout << data_time << endl;
-                        }
                         data_time.clear();
                     }
                     devicename.clear();
                 }
                 data_time.clear();
             }
-        }
     }
 }
