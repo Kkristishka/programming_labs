@@ -7,10 +7,7 @@ namespace fs = std::filesystem;
 
 int main()
 {
-    string log, devicename;
-    string userdevicename;
-    string path;
-    string data_time;
+    string log, devicename, userdevicename, path, data_time;
     for (;;)
     {
         cout << endl << "Enter the device name: ";
@@ -18,11 +15,11 @@ int main()
         if (cin.fail())
         {
             cin.clear();
-            cout << "try again " << endl;
+            cout << "Try again";
         }
         else
         {
-            cout << endl << "date \t \t value" << endl;
+            cout << endl << "Date \t \t Value" << endl;
             for (auto& p : fs::directory_iterator("logs"))
             {
                 ifstream file(p.path().generic_string());
