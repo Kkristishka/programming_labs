@@ -12,12 +12,19 @@ int main()
     {
         cout << "Enter the device name: ";
         cin >> userdevicename;
+        if (cin.fail())
+        {
+            cin.clear();
+            cout<<"Try again"<<endl;
+        }
+        else
+        {
         cout << endl << "Date \t \t      Value" << endl;
-        for (auto& p : fs::directory_iterator("/Users/kristinaammosova/Desktop/labs/programming_labs/less1laba/less1laba/logs"))
+        for (auto& p : fs::directory_iterator("logs"))
             {
                 ifstream file(p.path().generic_string());
                 path = p.path().generic_string();
-                int q = 84;
+                int q = 10;
                 while (path[q] != ')')
                 {
                     data_time += path[q];
@@ -48,6 +55,10 @@ int main()
                         }
                         i++;
                     }
+                    if(log.find("garbage") != -1 || log.length() == 0)
+                    {
+                        break;
+                    }
                     if (userdevicename == devicename && log[i + 1] == ':')
                     {
                             data_time += ':';
@@ -59,6 +70,7 @@ int main()
                                 data_time += log[k];
                                 k++;
                             }
+                        //cout << endl << "Date \t \t      Value" << endl;
                             cout << data_time << endl;
                         data_time.clear();
                     }
@@ -66,5 +78,6 @@ int main()
                 }
                 data_time.clear();
             }
+        }
     }
 }
