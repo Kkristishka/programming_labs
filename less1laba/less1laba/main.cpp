@@ -12,14 +12,12 @@ int main()
     {
         cout << "Enter the device name: ";
         cin >> userdevicename;
-        if (cin.fail())
+        if(cin.fail())
         {
             cin.clear();
-            cout<<"Try again"<<endl;
         }
         else
         {
-        cout << endl << "Date \t \t      Value" << endl;
         for (auto& p : fs::directory_iterator("logs"))
             {
                 ifstream file(p.path().generic_string());
@@ -61,6 +59,7 @@ int main()
                     }
                     if (userdevicename == devicename && log[i + 1] == ':')
                     {
+                        cout << endl << "Date \t \t      Value" << endl;
                             data_time += ':';
                             data_time.push_back(32);
 
@@ -70,8 +69,8 @@ int main()
                                 data_time += log[k];
                                 k++;
                             }
-                        //cout << endl << "Date \t \t      Value" << endl;
                             cout << data_time << endl;
+                        
                         data_time.clear();
                     }
                     devicename.clear();
