@@ -56,7 +56,7 @@ int main()
                     }
                     if(log.find("garbage") != -1 || log.length() == 0)
                     {
-                        break;
+                        continue;
                     }
                     if (userdevicename == devicename && log[i + 1] == ':')
                     {
