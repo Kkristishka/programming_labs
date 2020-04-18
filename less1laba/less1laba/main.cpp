@@ -61,6 +61,8 @@ int main()
                     if (userdevicename == devicename && log[i + 1] == ':')
                     {
                         cout << endl << "Date \t \t      Value" << endl;
+                            data_time += '-';
+                            data_time += log[0];
                             data_time += ':';
                             data_time.push_back(32);
 
